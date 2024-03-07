@@ -1,371 +1,402 @@
 <!DOCTYPE html>
 <html>
+
 <head>
 
-<meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)" >
-<meta http-equiv="origin-trial" data-feature=" WebXR Device API (For Chrome M69+)" >
-<meta charset="utf-8">
-<title>Video</title>
-<meta name="description" content="Video - A-Frame">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.js"></script>
+  <meta http-equiv="origin-trial" data-feature="WebVR (For Chrome M59+)">
+  <meta http-equiv="origin-trial" data-feature=" WebXR Device API (For Chrome M69+)">
+  <meta charset="utf-8">
+  <title>Video</title>
+  <meta name="description" content="Video - A-Frame">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/aframe/1.4.2/aframe.js"></script>
 
 </head>
-  <body onload="load()">
-       <script>
-    var key=[]
 
-function redirect(){
+<body onload="load()">
+  <script>
+    var key = []
 
-        console.log('redirecting');
-  document.getElementById("resetBut").setAttribute("position","1000,1000,1000")
-    document.getElementById("resetText").setAttribute("position","1000,1000,1000")
-  StartNextPage()
-  for(let i=1;i<=9;i++){
-         document.getElementById('circle'+i).setAttribute("position","1000,1000,1000")
-       }
-  
+    function redirect() {
 
-  
+      console.log('redirecting');
+      document.getElementById("resetBut").setAttribute("position", "1000,1000,1000")
+      document.getElementById("resetText").setAttribute("position", "1000,1000,1000")
+      StartNextPage()
+      for (let i = 1; i <= 9; i++) {
+        document.getElementById('circle' + i).setAttribute("position", "1000,1000,1000")
+      }
 
-}
-   function load(){
+
+
+
+    }
+    function load() {
       startTime();
-   document.getElementById('player').setAttribute('visible', 'false');
-     document.getElementById('player').setAttribute('position', '0,0,-1000');
-   document.getElementById('nextbt').setAttribute('position', '1000,1000,1000');
-   document.getElementById('prevbt').setAttribute('position', '1000,1000,1000');
-        document.getElementById('nextbt').setAttribute('visible', 'false');
-   document.getElementById('prevbt').setAttribute('visible', 'false');
-    console.log("loaded");
-        document.getElementById('startButton').setAttribute('position', '1000,1000,1000');
-     
-   }
-     function changecolor(a){
-       clickSound = document.getElementById("clickSound");
-       clickSound.play();
-         document.getElementById('circle'+a).setAttribute('material',"opacity:1;color:yellow");
-     document.getElementById('circle'+a).setAttribute('radius',"0.06");
+      document.getElementById('player').setAttribute('visible', 'false');
+      document.getElementById('player').setAttribute('position', '0,0,-1000');
+      document.getElementById('nextbt').setAttribute('position', '1000,1000,1000');
+      document.getElementById('prevbt').setAttribute('position', '1000,1000,1000');
+      document.getElementById('nextbt').setAttribute('visible', 'false');
+      document.getElementById('prevbt').setAttribute('visible', 'false');
+      console.log("loaded");
+      document.getElementById('startButton').setAttribute('position', '1000,1000,1000');
 
-       console.log(a);
-       
-       if(!key.includes(a)){
-         key.push(a);
-       }
-       if(key.length==9){
-          
-         console.log("resetting")
-         setTimeout(() => {
-       reset();
-           errorSound = document.getElementById("errorSound");
+    }
+    function changecolor(a) {
+      clickSound = document.getElementById("clickSound");
+      clickSound.play();
+      document.getElementById('circle' + a).setAttribute('material', "opacity:1;color:yellow");
+      document.getElementById('circle' + a).setAttribute('radius', "0.06");
+
+      console.log(a);
+
+      if (!key.includes(a)) {
+        key.push(a);
+      }
+      if (key.length == 9) {
+
+        console.log("resetting")
+        setTimeout(() => {
+          reset();
+          errorSound = document.getElementById("errorSound");
           errorSound.play();
         }, 700);
-      
-       }
-       if(key.toString()=='6,3,9,1,8,2,5'){
-         
-         
+
+      }
+      if (key.toString() == '6,3,9,1,8,2,5') {
+
+
         setTimeout(() => {
-           victoryClickSound = document.getElementById("victoryClickSound");
+          victoryClickSound = document.getElementById("victoryClickSound");
           victoryClickSound.play();
-           console.log("unlocked");
-         redirect();
-         reset();
-          
+          console.log("unlocked");
+          redirect();
+          reset();
+
         }, 600);
-        
-       }
-       
-       
-       
-     }
-     
-     function reset(){
-       console.log('reset')
-       for(let i=1;i<=9;i++){
-         document.getElementById('circle'+i).setAttribute('material',"opacity:0.75;color:#ffffff");
-         document.getElementById('circle'+i).setAttribute('radius',"0.05");
-       }
-       key=[]
-     }
-     function updateLine(){
-       for (i in key){
-         document.getElementById('line').setAttribute('line__'+i+1,"start:0 2 -1; end: 0.25 2 -1; color: yellow; ")
-       }
-       
-     }
-    
-   </script>
-   <audio id="clickSound" src="https://cdn.glitch.global/4f65a5a3-8205-490b-8e13-f35721d204e7/mixkit-arcade-game-jump-coin-216.wav?v=1697518805349"></audio>
-   <audio id="errorSound" src="https://cdn.glitch.global/4f65a5a3-8205-490b-8e13-f35721d204e7/mixkit-game-show-wrong-answer-buzz-950.wav?v=1697519137677"></audio>
-   <audio id="victoryClickSound" src="https://cdn.glitch.global/cced038f-d7e6-4638-b32a-0b32d1f27228/success-1-6297.mp3?v=1697543191612"></audio>
 
-    
-    
-   
-    <audio id="myAudio" loop>
-  <source src="https://cdn.glitch.global/cced038f-d7e6-4638-b32a-0b32d1f27228/batttle.mp3?v=1697437329197" type="audio/mp3">
-    </audio>
+      }
+
+
+
+    }
+
+    function reset() {
+      console.log('reset')
+      for (let i = 1; i <= 9; i++) {
+        document.getElementById('circle' + i).setAttribute('material', "opacity:0.75;color:#ffffff");
+        document.getElementById('circle' + i).setAttribute('radius', "0.05");
+      }
+      key = []
+    }
+    function updateLine() {
+      for (i in key) {
+        document.getElementById('line').setAttribute('line__' + i + 1, "start:0 2 -1; end: 0.25 2 -1; color: yellow; ")
+      }
+
+    }
+
+  </script>
+  <audio id="clickSound"
+    src="https://cdn.glitch.global/4f65a5a3-8205-490b-8e13-f35721d204e7/mixkit-arcade-game-jump-coin-216.wav?v=1697518805349"></audio>
+  <audio id="errorSound"
+    src="https://cdn.glitch.global/4f65a5a3-8205-490b-8e13-f35721d204e7/mixkit-game-show-wrong-answer-buzz-950.wav?v=1697519137677"></audio>
+  <audio id="victoryClickSound"
+    src="https://cdn.glitch.global/cced038f-d7e6-4638-b32a-0b32d1f27228/success-1-6297.mp3?v=1697543191612"></audio>
+
+
+
+
+  <audio id="myAudio" loop>
+    <source src="https://cdn.glitch.global/cced038f-d7e6-4638-b32a-0b32d1f27228/batttle.mp3?v=1697437329197"
+      type="audio/mp3">
+  </audio>
   <button id="playButton" style="display:none">
-    
-    </button>
-<script>
-    var music = document.getElementById("myAudio"); 
-function  StartNextPage(){
-    
-console.log("starting video reel")
-music.play()
-  document.getElementById('nextbt').setAttribute('position', '-1000 -1000 -1000');
-   document.getElementById('prevbt').setAttribute('position', '-1000 -1000 -1000');
-   document.getElementById("back").setAttribute("src","#panorama")
-       document.getElementById('startButton').setAttribute('position', '0 0 -10');
 
-}
-    const links=[
+  </button>
+  <script>
+    var music = document.getElementById("myAudio");
+    function StartNextPage() {
+
+      console.log("starting video reel")
+      music.play()
+      document.getElementById('nextbt').setAttribute('position', '-1000 -1000 -1000');
+      document.getElementById('prevbt').setAttribute('position', '-1000 -1000 -1000');
+      document.getElementById("back").setAttribute("src", "#panorama")
+      document.getElementById('startButton').setAttribute('position', '0 0 -10');
+
+    }
+    const links = [
 
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4",
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ElephantsDream.mp4",
       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
-       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
-       "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
-      ]
-   
-   
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+      "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4"
+    ]
+
+
     var currVideoID = 0;
     /* global AFRAME */
     AFRAME.registerComponent('play-on-click', {
       init: function () {
-       
-        
-        
-         var videoEl = this.el.getAttribute('material').src;
+
+
+
+        var videoEl = this.el.getAttribute('material').src;
         if (!videoEl) { return; }
         this.el.object3D.visible = true;
-        
-        var el=this.el
-        
-        
-       },
+
+        var el = this.el
+
+
+      },
       play: function () {
         window.addEventListener('click', this.onClick);
       },
       pause: function () {
         window.removeEventListener('click', this.onClick);
       },
-       
-      
+
+
     });
 
     AFRAME.registerComponent('next', {
-    schema: {
-      color: {default: 'red'}
-    },
+      schema: {
+        color: { default: 'red' }
+      },
 
-    init: function () {
-      var data = this.data;
-      var el = this.el; 
+      init: function () {
+        var data = this.data;
+        var el = this.el;
 
 
-      el.addEventListener('mouseenter', function () {
-       console.log('next')
-        currVideoID=currVideoID+1;
-        if(currVideoID==links.length){
-            currVideoID=0
-        }
-         document.getElementById("videoBunny").src=links[currVideoID];
+        el.addEventListener('mouseenter', function () {
+          console.log('next')
+          currVideoID = currVideoID + 1;
+          if (currVideoID == links.length) {
+            currVideoID = 0
+          }
+          document.getElementById("videoBunny").src = links[currVideoID];
 
-        console.log(currVideoID)
+          console.log(currVideoID)
           VideoPlay();
-      });
-      
+        });
 
-     
-    }
-  });
 
-  AFRAME.registerComponent('prev', {
-    schema: {
-      color: {default: 'red'}
-    },
 
-    init: function () {
-      var data = this.data;
-      var el = this.el;  // <a-box>
-
-      el.addEventListener('mouseenter', function () {
-        console.log('prev')
-        currVideoID=currVideoID-1;
-        if(currVideoID==-1){
-            currVideoID=links.length-1
-        }
-        document.getElementById("videoBunny").src=links[currVideoID];
-        console.log(currVideoID)
-        VideoPlay();
-      });
-
-  
-    }
-  });
-  
-  function startTime() {
-  const today = new Date();
-  let h = today.getHours();
-  let m = today.getMinutes();
-
-  m = checkTime(m);
-
-  let time =  h + ":" + m;
-  document.getElementById('clockText').setAttribute('value', time);
-  setTimeout(startTime, 1000);
-}
-
-function checkTime(i) {
-  if (i < 10) {i = "0" + i};  // add zero in front of numbers < 10
-  return i;
-}
-  
-  
-  AFRAME.registerComponent("clock", {
-    //future scope
-  schema: {
-    default: ""
-  },
-  init: function() {
-    var data = this.data;
-    var el = this.el;
-    
-    el.addEventListener("mouseenter", function() {
-      //el.setAttribute("animation", "property: height; to: 2; dur: 2000; easing: linear; loop: false");
-      console.log("clock click")
-      //Clock clicked
+      }
     });
-  }
-});
-  
-  function VideoPlay(){
-    start()
-    music.pause()
-    console.log("video playing, text will be hidden")
-   document.getElementById('player').setAttribute('material', 'src:#videoBunny;');
-    
-     document.getElementById('welcomeText').setAttribute('visible', 'false');
-    document.getElementById('hiText').setAttribute('visible', 'false');
-    document.getElementById('manualText').setAttribute('visible', 'false');
-   
-  }
 
-  var started = 1;
-  AFRAME.registerComponent("start", {
-    
-  schema: {
-    default: ""
-  },
-  init: function() {
-    var data = this.data;
-    var el = this.el;
-    
-    el.addEventListener("mouseenter", function() {
-      
-     document.getElementById('player').setAttribute('animation', 'property: position; to: 0 0 -100; dur: 3000;delay:0; easing: linear; loop: false;'); //animation="property: position; to: 0 0 -100; dur: 2000; easing: linear; loop: false;" 
-    if(started!=0){
+    AFRAME.registerComponent('prev', {
+      schema: {
+        color: { default: 'red' }
+      },
+
+      init: function () {
+        var data = this.data;
+        var el = this.el;  // <a-box>
+
+        el.addEventListener('mouseenter', function () {
+          console.log('prev')
+          currVideoID = currVideoID - 1;
+          if (currVideoID == -1) {
+            currVideoID = links.length - 1
+          }
+          document.getElementById("videoBunny").src = links[currVideoID];
+          console.log(currVideoID)
+          VideoPlay();
+        });
+
+
+      }
+    });
+
+    function startTime() {
+      const today = new Date();
+      let h = today.getHours();
+      let m = today.getMinutes();
+
+      m = checkTime(m);
+
+      let time = h + ":" + m;
+      document.getElementById('clockText').setAttribute('value', time);
+      setTimeout(startTime, 1000);
+    }
+
+    function checkTime(i) {
+      if (i < 10) { i = "0" + i };  // add zero in front of numbers < 10
+      return i;
+    }
+
+
+    AFRAME.registerComponent("clock", {
+      //future scope
+      schema: {
+        default: ""
+      },
+      init: function () {
+        var data = this.data;
+        var el = this.el;
+
+        el.addEventListener("mouseenter", function () {
+          //el.setAttribute("animation", "property: height; to: 2; dur: 2000; easing: linear; loop: false");
+          console.log("clock click")
+          //Clock clicked
+        });
+      }
+    });
+
+    function VideoPlay() {
       start()
-      started = 0;
+      music.pause()
+      console.log("video playing, text will be hidden")
+      document.getElementById('player').setAttribute('material', 'src:#videoBunny;');
+
+      document.getElementById('welcomeText').setAttribute('visible', 'false');
+      document.getElementById('hiText').setAttribute('visible', 'false');
+      document.getElementById('manualText').setAttribute('visible', 'false');
+
     }
+
+    var started = 1;
+    AFRAME.registerComponent("start", {
+
+      schema: {
+        default: ""
+      },
+      init: function () {
+        var data = this.data;
+        var el = this.el;
+
+        el.addEventListener("mouseenter", function () {
+
+          document.getElementById('player').setAttribute('animation', 'property: position; to: 0 0 -100; dur: 3000;delay:0; easing: linear; loop: false;'); 
+          //animation="property: position; to: 0 0 -100; dur: 2000; easing: linear; loop: false;" 
+          if (started != 0) {
+            start()
+            started = 0;
+          }
+        });
+      }
     });
-  }
-});
-  
-  function start(){
-     
-  
-  console.log("start video")
- document.getElementById('player').setAttribute('visible', 'true');
-     document.getElementById('startButton').setAttribute('visible', 'false');
-         document.getElementById('startText').setAttribute('visible', 'false');
-    
-       document.getElementById('nextbt').setAttribute('position', '85 0 -90');
 
-       document.getElementById('prevbt').setAttribute('position', '-85 0 -90');
+    function start() {
 
 
-}
-    </script>`
- 
-<a-scene>
+      console.log("start video")
+      document.getElementById('player').setAttribute('visible', 'true');
+      document.getElementById('startButton').setAttribute('visible', 'false');
+      document.getElementById('startText').setAttribute('visible', 'false');
 
-<a-assets>
-<video id="videoBunny" preload="none" src="https://www.w3schools.com/tags/movie.mp4" width="160" height="90" autoplay loop="true" ></video>
-<!-- Load your panorama image asset -->
-<img id="panorama" src="https://cdn.glitch.global/cced038f-d7e6-4638-b32a-0b32d1f27228/img.jpg?v=1697107464838" >
-   
-</a-assets>
+      document.getElementById('nextbt').setAttribute('position', '85 0 -90');
 
-  <a-plane start height="1" width="2" id="startButton" position="0 0 -10" color="#018c01">  
-    
-    <a-text id="startText" value="START" height="8" width="16" align="center"  position="0 0 0" ></a-text>
-</a-plane>
-  <a-text id="welcomeText" height="20" width="20" position="0 7 -5"   
-          animation__first=" startEvents:  loaded, animationcomplete__second;property: rotation; to: 0 10 0; from: 0 -10 0; dur: 2000; easing: 	easeInOutSine;  "
-          animation__second=" startEvents:  animationcomplete__first;property: rotation; to: 0 -10 0; from: 0 10 0; dur: 2000; easing: 	easeInOutSine;  "
-          align="center"  color="#deda02" value="Welcome to ReelVR"></a-text>
-  
-  
-<a-entity id="player" material="shader: flat; color:#c4ffd3; "
-          
-          geometry="primitive: plane; width: 160; height: 90;" position="0 0 -1000" rotation="0 0 0" play-on-click >
-  
-     <a-text id="hiText" height="200" width="200" position="0 35 10" align="center"  color="#8f2eff" font= "mozillavr" value="User Manual"></a-text>
+      document.getElementById('prevbt').setAttribute('position', '-85 0 -90');
 
-  <a-text id="manualText" height="100" width="120" position="0 0 10" align="center" font="roboto" color="#4400ff"
-          value="Control the app with your gaze. Bring the circle at the center over a button to click it. Swipe motion occurs by looking at right or left end of screen. Swipe left for previous video. Swipe right for next video. Clock is present at your top right. Please make sure to take frequent breaks from watching VR. To much VR screentime is harmful for our eyes. Swipe right to continue. Enjoy!"></a-text>
 
-  
+    }
+  </script>`
 
-  </a-entity>
-   <a-plane material="shader: flat; opacity:0.2;" height="90" width="20"  next onclick='console.log("next")' position="85 0 -90" id="nextbt" rotation="0 0 0" color="#ffffff" ></a-plane>
-<a-plane material="shader: flat; opacity:0.2;"  height="90" width="20" prev  onclick='console.log("previous")' position="-85 0 -90" id="prevbt" rotation="0 0 0" color="#ffffff" ></a-plane>
+  <a-scene>
 
-<a-entity id="rig" position="25 10 0">
-  <a-entity id="camera" camera look-controls></a-entity>
- 
-</a-entity>
-  
-   
-  
-  
-<a-entity clock position="10 10 1" 
-           animation__mouseenter="property:position;  to: 0 0 0 ; startEvents: mouseenter; dur: 350";
-  animation__mouseleave="property:position;  to: 10 10 3; startEvents: mouseleave; dur: 500";>
+    <a-assets>
+      <video id="videoBunny" preload="none" src="https://www.w3schools.com/tags/movie.mp4" width="160" height="90"
+        autoplay loop="true"></video>
+      <!-- Load your panorama image asset -->
+      <img id="panorama" src="https://cdn.glitch.global/cced038f-d7e6-4638-b32a-0b32d1f27228/img.jpg?v=1697107464838">
 
-<a-plane  height="2" width="6"   position="10 10 3" id="clockblock" rotation="45 -45 10" color="#2a00fa" ></a-plane>
-<a-plane  height="2.08" width="6.08"   position="10.02 10.1 3" id="clockBorder" rotation="45 -45 10" color="#030000" ></a-plane>
+    </a-assets>
 
-  <a-text  height="10" width="40"  position="10 10 3.01" id="clockText" align="center" rotation="45 -45 10" color="#00ba13" value="Helloo, World!"></a-text>
-</a-entity>
-  
-    <a-circle  id="circle1" onmouseenter="changecolor(1)" radius="0.05"  material="opacity:0.75;color:#ffffff" position ="0 2 -1 "></a-circle>
-     <a-circle  id="circle2" onmouseenter="changecolor(2)" radius="0.05"  material="opacity:0.75;color:#ffffff" position ="0.25 2 -1 "></a-circle>
-     <a-circle  id="circle3" onmouseenter="changecolor(3)" radius="0.05"  material="opacity:0.75;color:#ffffff" position ="-0.25 2 -1 "></a-circle>
-     <a-circle  id="circle4" onmouseenter="changecolor(4)" radius="0.05"  material="opacity:0.75;color:#ffffff" position ="0 1.75 -1 "></a-circle>
-     <a-circle  id="circle5" onmouseenter="changecolor(5)" radius="0.05"  material="opacity:0.75;color:#ffffff" position ="0.25 1.75 -1 "></a-circle>
-     <a-circle  id="circle6" onmouseenter="changecolor(6)" radius="0.05"  material="opacity:0.75;color:#ffffff" position ="-0.25 1.75 -1 "></a-circle>
-     <a-circle  id="circle7" onmouseenter="changecolor(7)" radius="0.05"  material="opacity:0.75;color:#ffffff" position ="0 2.25 -1 "></a-circle>
-     <a-circle  id="circle8" onmouseenter="changecolor(8)" radius="0.05"  material="opacity:0.75;color:#ffffff" position ="0.25 2.25 -1 "></a-circle>
-     <a-circle  id="circle9" onmouseenter="changecolor(9)" radius="0.05"  material="opacity:0.75;color:#ffffff" position ="-0.25 2.25 -1 "></a-circle>
-     <a-plane color="#ffaca6" id="resetBut" onmouseenter="reset()" width="0.15" height="0.1" position ="0 1.5 -1 "></a-plane>
-     <a-text color="red" id="resetText"  width="1.25" height="1" value="Reset" position ="0 1.5 -0.99" align="center"></a-text>
-     <a-entity  id="line"></a-entity>
-<a-sky id="back" src="https://cdn.glitch.global/4f65a5a3-8205-490b-8e13-f35721d204e7/image.jpg?v=1697447335321"></a-sky>
+    <a-plane start height="1" width="2" id="startButton" position="0 0 -10" color="#018c01">
 
-     
-  
-<a-camera>
-     <a-entity cursor="fuse: true; fuseTimeout: 500"
-            position="0 0 -0.1"
-            geometry="primitive: ring; radiusInner: 0.002; radiusOuter: 0.003"
-            material="color: whte; shader: flat">
-</a-camera>
-</a-scene>
+      <a-text id="startText" value="START" height="8" width="16" align="center" position="0 0 0"></a-text>
+    </a-plane>
+    <a-text id="welcomeText" height="20" width="20" position="0 7 -5"
+      animation__first=" startEvents:  loaded, animationcomplete__second;property: rotation; to: 0 10 0; from: 0 -10 0; dur: 2000; easing: 	easeInOutSine;  "
+      animation__second=" startEvents:  animationcomplete__first;property: rotation; to: 0 -10 0; from: 0 10 0; dur: 2000; easing: 	easeInOutSine;  "
+      align="center" color="#deda02" value="Welcome to ReelVR"></a-text>
+
+
+    <a-entity id="player" material="shader: flat; color:#c4ffd3; " geometry="primitive: plane; width: 160; height: 90;"
+      position="0 0 -1000" rotation="0 0 0" play-on-click>
+
+      <a-text id="hiText" height="200" width="200" position="0 35 10" align="center" color="#8f2eff" font="mozillavr"
+        value="User Manual"></a-text>
+
+      <a-text id="manualText" height="100" width="120" position="0 0 10" align="center" font="roboto" color="#4400ff"
+        value="Control the app with your gaze. Bring the circle at the center over a button to click it. Swipe motion occurs by looking at right or left end of screen. Swipe left for previous video. Swipe right for next video. Clock is present at your top right. Please make sure to take frequent breaks from watching VR. To much VR screentime is harmful for our eyes. Swipe right to continue. Enjoy!"></a-text>
+
+
+
+    </a-entity>
+    <a-plane material="shader: flat; opacity:0.2;" height="90" width="20" next onclick='console.log("next")'
+      position="85 0 -90" id="nextbt" rotation="0 0 0" color="#ffffff"></a-plane>
+    <a-plane material="shader: flat; opacity:0.2;" height="90" width="20" prev onclick='console.log("previous")'
+      position="-85 0 -90" id="prevbt" rotation="0 0 0" color="#ffffff"></a-plane>
+
+    <a-entity id="rig" position="25 10 0">
+      <a-entity id="camera" camera look-controls></a-entity>
+
+    </a-entity>
+
+
+
+
+    <a-entity clock position="10 10 1"
+      animation__mouseenter="property:position;  to: 0 0 0 ; startEvents: mouseenter; dur: 350" ;
+      animation__mouseleave="property:position;  to: 10 10 3; startEvents: mouseleave; dur: 500" ;>
+
+      <a-plane height="2" width="6" position="10 10 3" id="clockblock" rotation="45 -45 10" color="#2a00fa"></a-plane>
+      <a-plane height="2.08" width="6.08" position="10.02 10.1 3" id="clockBorder" rotation="45 -45 10"
+        color="#030000"></a-plane>
+
+      <a-text height="10" width="40" position="10 10 3.01" id="clockText" align="center" rotation="45 -45 10"
+        color="#00ba13" value="Helloo, World!"></a-text>
+    </a-entity>
+
+
+
+    <!--Screen Pattern Lock-->
+    <a-circle id="circle1" onmouseenter="changecolor(1)" radius="0.05" material="opacity:0.75;color:#ffffff"
+      position="0 2 -1 "></a-circle>
+    <a-circle id="circle2" onmouseenter="changecolor(2)" radius="0.05" material="opacity:0.75;color:#ffffff"
+      position="0.25 2 -1 "></a-circle>
+    <a-circle id="circle3" onmouseenter="changecolor(3)" radius="0.05" material="opacity:0.75;color:#ffffff"
+      position="-0.25 2 -1 "></a-circle>
+    <a-circle id="circle4" onmouseenter="changecolor(4)" radius="0.05" material="opacity:0.75;color:#ffffff"
+      position="0 1.75 -1 "></a-circle>
+    <a-circle id="circle5" onmouseenter="changecolor(5)" radius="0.05" material="opacity:0.75;color:#ffffff"
+      position="0.25 1.75 -1 "></a-circle>
+    <a-circle id="circle6" onmouseenter="changecolor(6)" radius="0.05" material="opacity:0.75;color:#ffffff"
+      position="-0.25 1.75 -1 "></a-circle>
+    <a-circle id="circle7" onmouseenter="changecolor(7)" radius="0.05" material="opacity:0.75;color:#ffffff"
+      position="0 2.25 -1 "></a-circle>
+    <a-circle id="circle8" onmouseenter="changecolor(8)" radius="0.05" material="opacity:0.75;color:#ffffff"
+      position="0.25 2.25 -1 "></a-circle>
+    <a-circle id="circle9" onmouseenter="changecolor(9)" radius="0.05" material="opacity:0.75;color:#ffffff"
+      position="-0.25 2.25 -1 "></a-circle>
+    <a-plane color="#ffaca6" id="resetBut" onmouseenter="reset()" width="0.15" height="0.1"
+      position="0 1.5 -1 "></a-plane>
+
+
+    <a-text color="red" id="resetText" width="1.25" height="1" value="Reset" position="0 1.5 -0.99"
+      align="center"></a-text>
+    <a-entity id="line"></a-entity>
+
+
+
+    <a-sky id="back"
+      src="https://cdn.glitch.global/4f65a5a3-8205-490b-8e13-f35721d204e7/image.jpg?v=1697447335321"></a-sky>
+
+
+
+    <a-camera>
+      <a-entity cursor="fuse: true; fuseTimeout: 500" position="0 0 -0.1"
+        geometry="primitive: ring; radiusInner: 0.002; radiusOuter: 0.003" material="color: whte; shader: flat">
+    </a-camera>
+  </a-scene>
 
 </body>
+
 </html>
